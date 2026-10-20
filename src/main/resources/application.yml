@@ -2,12 +2,12 @@ spring:
   application:
     name: access-control-service
   r2dbc:
-    url: r2dbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5436}/${DB_NAME:platform_access_control}
+    url: r2dbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5436}/${ACCESS_CONTROL_DB_NAME:platform_access_control}
     username: ${DB_USERNAME:restaurant-ktv-platform}
     password: ${DB_PASSWORD:Pisethjavaschool#2026}
   liquibase:
     enabled: true
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5436}/${DB_NAME:platform_access_control}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5436}/${ACCESS_CONTROL_DB_NAME:platform_access_control}
     user: ${DB_USERNAME:restaurant-ktv-platform}
     password: ${DB_PASSWORD:Pisethjavaschool#2026}
     change-log: classpath:db/changelog/db.changelog-master.yml
@@ -18,3 +18,8 @@ server:
 logging:
   level:
     com.pisethjavaschool.accesscontrol: INFO
+platform:
+  client:
+    users:
+      base-url: ${USER_SERVICE_URL:http://127.0.0.1:8089}
+      root-path: /api/v1/users
